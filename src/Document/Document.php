@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 // api/document.php
 header('Content-Type: application/json');
@@ -203,3 +204,12 @@ switch ($method) {
         break;
 }
 ?>
+=======
+$config = [
+    'host' => 'localhost',
+    'dbname' => 'project',  // เปลี่ยนเป็นชื่อฐานข้อมูลของคุณ
+    'username' => 'root',     // เปลี่ยนเป็น username ของคุณ
+    'password' => '12345678',     // เปลี่ยนเป็น password ของคุณ
+    'charset' => 'utf8mb4'
+];
+>>>>>>> aeda49a (Deploy to GitHub Pages)

@@ -1,0 +1,40 @@
+const express = require('express');
+const mysql = require('mysql2');
+const cors = require('cors');
+
+const app = express();
+const port = 3001;
+
+app.use(cors());
+app.use(express.json());
+
+// เชื่อมต่อฐานข้อมูล
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '12345678', // ใส่รหัสผ่านของคุณ
+  database: 'project'
+});
+
+db.connect(err => {
+  if (err) {
+    console.error('เชื่อมต่อฐานข้อมูลล้มเหลว:', err);
+    return;
+  }
+  console.log('เชื่อมต่อฐานข้อมูลสำเร็จ');
+});
+
+// API ดึงข้อมูล
+app.get('/api/data', (req, res) => {
+  db.query('SELECT * FROM documents', (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Server run on port ${port}`);
+});
